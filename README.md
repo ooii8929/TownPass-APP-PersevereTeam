@@ -10,9 +10,12 @@ TownPass project made with Flutter.
 - VSCode + Flutter extension
 
 
-### Project Setup
+### Project Setup 1: Init Flutter Env
+請參考官方文檔的'安裝 Flutter SDK'
+： https://townpass.taipei/docs/flutter/home/install/macOS-iOS-setup.html#zsh
+1. 安裝完 flutter SDK 後，使用 flutter doctor -v 檢查安裝，如果失敗可以重啟 VScode 看看
 
-1. Open with your desire IDE.
+### Project Setup 2: Run Flutter APP
 2. Run the following to get the packages project needed:
 
    ``` bash
@@ -26,7 +29,19 @@ TownPass project made with Flutter.
    ```
 4. You are all set now, Run the project from IDE or the command:
 
-   * 請先用 flutter devices 列出你可能有的 Devices，並且使用 flutter run -d <device id> 來選擇 Device。以下舉例：
+   * 請先開啟 xcode simulator
+      ```
+      xcrun simctl list devices
+
+      == Devices ==
+      -- iOS 17.5 --
+         iPhone 15 Pro Max (53CEAA9A-8CB3-46CB-BD6D-06024B76A9DC) (Shutdown) 
+      ```
+      ```
+      open -a Simulator --args -CurrentDeviceUDID 53CEAA9A-8CB3-46CB-BD6D-06024B76A9DC
+      ```
+      
+   * 用 flutter devices 列出你可能有的 Devices，並且使用 flutter run -d <device id> 來選擇 Device。以下舉例：
       ```
       flutter devices
 
