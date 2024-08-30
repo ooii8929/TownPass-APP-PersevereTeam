@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:town_pass/service/account_service.dart';
 import 'package:town_pass/service/device_service.dart';
 import 'package:town_pass/service/geo_locator_service.dart';
+import 'package:town_pass/service/wifi_info_service.dart';
 import 'package:town_pass/util/tp_route.dart';
 import 'package:town_pass/util/web_message_handler/tp_web_message_reply.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -165,5 +166,34 @@ class OpenLinkMessageHandler extends TPWebMessageHandler {
       TPRoute.webView,
       arguments: message,
     );
+  }
+}
+
+class WifiInfoWebMessageHandler extends TPWebMessageHandler {
+  @override
+  String get name => 'wifiinfo';
+
+  @override
+  Future<void> handle({
+    required String? message,
+    required WebUri? sourceOrigin,
+    required bool isMainFrame,
+    required Function(WebMessage reply)? onReply,
+  }) async {
+    final wifiInfoService = await Get.putAsync(() => WifiInfoService().init());
+
+    onReply?.call(replyWebMessage(
+      data: {
+        'wifiInfo': {
+          'wifiName': wifiInfoService.wifiName,
+          'wifiBSSID': wifiInfoService.wifiBSSID,
+          'wifiIPv4': wifiInfoService.wifiIPv4,
+          'wifiIPv6': wifiInfoService.wifiIPv6,
+          'wifiGatewayIP': wifiInfoService.wifiGatewayIP,
+          'wifiBroadcast': wifiInfoService.wifiBroadcast,
+          'wifiSubmask': wifiInfoService.wifiSubmask,
+        },
+      },
+    ));
   }
 }
