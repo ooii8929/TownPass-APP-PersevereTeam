@@ -45,3 +45,22 @@ TownPass project made with Flutter.
       ```
 
    * 團隊統一使用 iPhone 15 Pro Max 裝置開發
+
+
+### 如何客製化自己的 Web-View 在 APP 內
+1. 添加新的 LOGO 在 assets/svg，這邊叫做 persevering-face-emoji.png
+2. 運行 flutter pub run build_runner build --delete-conflicting-outputs
+   - 他會根據 pubspec.yaml 的 flutter.assets.assets/svg/ 在 lib/gen/assets.gen.dart 建立對應 resource
+3. 在 lib/page/city_service/model/my_service_item_model.dart 的 extension MyServiceIdExt on MyServiceItemId 新增以下 code，xxx 為自己填寫
+```
+ MyServiceItemId.dedicatedLine => MyServiceItem(
+          title: 'xxxx',
+          description: 'xxxx',
+          icon: Assets.image.perseveringFaceEmoji.image(), // 這邊是根據圖片種類、名稱而定
+          category: MyServiceCategory.cityService,
+          destinationUrl: 'xxxxx',
+        )
+```
+4. 在 destinationUrl: 'xxxxx' 填寫上自己 web-view 的 URL
+
+

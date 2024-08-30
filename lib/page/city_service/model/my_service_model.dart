@@ -34,6 +34,13 @@ enum MyServiceItemId {
 extension MyServiceIdExt on MyServiceItemId {
   MyServiceItem get item {
     return switch (this) {
+        MyServiceItemId.dedicatedLine => MyServiceItem(
+          title: '隊名煩惱',
+          description: '為城市通黑客松而生',
+          icon: Assets.image.perseveringFaceEmoji.image(), // 這邊是根據圖片種類、名稱而定          
+          category: MyServiceCategory.cityService,
+          destinationUrl: '',
+        ),
       MyServiceItemId.dedicatedLine => MyServiceItem(
           title: '1999',
           description: '播打網路語音通話',
