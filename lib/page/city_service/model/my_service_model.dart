@@ -39,7 +39,7 @@ extension MyServiceIdExt on MyServiceItemId {
           description: '為城市通黑客松而生',
           icon: Assets.image.perseveringFaceEmoji.image(), // 這邊是根據圖片種類、名稱而定
           category: MyServiceCategory.cityService,
-          destinationUrl: '',
+          destinationUrl: 'http://localhost:2024/',
         ),
       MyServiceItemId.dedicatedLine => MyServiceItem(
           title: '1999',
