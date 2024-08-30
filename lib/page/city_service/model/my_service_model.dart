@@ -34,10 +34,10 @@ enum MyServiceItemId {
 extension MyServiceIdExt on MyServiceItemId {
   MyServiceItem get item {
     return switch (this) {
-        MyServiceItemId.dedicatedLine => MyServiceItem(
+      MyServiceItemId.dedicatedLine => MyServiceItem(
           title: '隊名煩惱',
           description: '為城市通黑客松而生',
-          icon: Assets.image.perseveringFaceEmoji.image(), // 這邊是根據圖片種類、名稱而定          
+          icon: Assets.image.perseveringFaceEmoji.image(), // 這邊是根據圖片種類、名稱而定
           category: MyServiceCategory.cityService,
           destinationUrl: '',
         ),
@@ -172,7 +172,8 @@ extension MyServiceIdExt on MyServiceItemId {
           description: '提供各區日常服務地圖查找',
           icon: Assets.svg.iconLocationSearch24.svg(),
           category: MyServiceCategory.explore,
-          destinationUrl: 'https://taipei-pass-service.vercel.app/surrounding-service/',
+          destinationUrl:
+              'https://taipei-pass-service.vercel.app/surrounding-service/',
         ),
       MyServiceItemId.zoo => MyServiceItem(
           title: '愛遊動物園',
