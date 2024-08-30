@@ -8,29 +8,6 @@ TownPass project made with Flutter.
 - Android Studio + Flutter plugin
 - VSCode + Flutter extension
 
-### CI/CD
-```mermaid
-gitGraph
-    commit
-    branch develop
-    commit
-    branch feat/wifi
-    commit
-    commit
-    checkout develop
-    merge feat/wifi
-    branch feat/bluetooth
-    commit
-    checkout develop
-    merge feat/bluetooth
-    checkout main
-    merge develop
-    commit id: "主線(到時候 Demo 用)"
-    checkout develop
-    commit id: "開發(集體開發)"
-```
-
-
 ### Project Setup 1: Init Flutter Env
 請參考官方文檔的'安裝 Flutter SDK'
 ： https://townpass.taipei/docs/flutter/home/install/macOS-iOS-setup.html#zsh
