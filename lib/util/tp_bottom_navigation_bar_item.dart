@@ -31,10 +31,12 @@ class ServiceBottomNavigationBarItem extends TPBottomNavigationBarItem {
   const ServiceBottomNavigationBarItem();
 
   @override
-  Widget icon() => Assets.svg.iconTabbarServiceDefault.svg(height: 24, width: 24);
+  Widget icon() =>
+      Assets.svg.iconTabbarServiceDefault.svg(height: 24, width: 24);
 
   @override
-  Widget activeIcon() => Assets.svg.iconTabbarServiceSelect.svg(height: 24, width: 24);
+  Widget activeIcon() =>
+      Assets.svg.iconTabbarServiceSelect.svg(height: 24, width: 24);
 
   @override
   String label() => '服務';
@@ -50,7 +52,8 @@ class HomeBottomNavigationBarItem extends TPBottomNavigationBarItem {
   Widget icon() => Assets.svg.iconTabbarHomeDefault.svg(height: 24, width: 24);
 
   @override
-  Widget activeIcon() => Assets.svg.iconTabbarHomeSelect.svg(height: 24, width: 24);
+  Widget activeIcon() =>
+      Assets.svg.iconTabbarHomeSelect.svg(height: 24, width: 24);
 
   @override
   String label() => '首頁';
@@ -63,10 +66,12 @@ class PerkBottomNavigationBarItem extends TPBottomNavigationBarItem {
   const PerkBottomNavigationBarItem();
 
   @override
-  Widget icon() => Assets.svg.iconTabbarCouponDefault.svg(height: 24, width: 24);
+  Widget icon() =>
+      Assets.svg.iconTabbarCouponDefault.svg(height: 24, width: 24);
 
   @override
-  Widget activeIcon() => Assets.svg.iconTabbarCouponSelect.svg(height: 24, width: 24);
+  Widget activeIcon() =>
+      Assets.svg.iconTabbarCouponSelect.svg(height: 24, width: 24);
 
   @override
   String label() => '優惠';

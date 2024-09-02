@@ -5,50 +5,50 @@ import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:flutter/services.dart';
 import 'dart:developer' as developer;
 
-class SpeechToTextService extends GetxService {
+class SpeechToTextService extends GetxController {
   final SpeechToText _speech = SpeechToText();
 
-  bool _hasSpeech = false;
-  String _lastWords = '';
-  String _lastError = '';
-  String _lastStatus = '';
-  String _currentLocaleId = '';
-  List<LocaleName> _localeNames = [];
-  double _level = 0.0;
+  RxBool _hasSpeech = false.obs;
+  RxString _lastWords = ''.obs;
+  RxString _lastError = ''.obs;
+  RxString _lastStatus = ''.obs;
+  RxString _currentLocaleId = ''.obs;
+  RxList<LocaleName> _localeNames = <LocaleName>[].obs;
+  RxDouble _level = 0.0.obs;
 
-  bool get hasSpeech => _hasSpeech;
-  String get lastWords => _lastWords;
-  String get lastError => _lastError;
-  String get lastStatus => _lastStatus;
-  String get currentLocaleId => _currentLocaleId;
+  bool get hasSpeech => _hasSpeech.value;
+  String get lastWords => _lastWords.value;
+  String get lastError => _lastError.value;
+  String get lastStatus => _lastStatus.value;
+  String get currentLocaleId => _currentLocaleId.value;
   List<LocaleName> get localeNames => _localeNames;
-  double get level => _level;
+  double get level => _level.value;
 
   Future<SpeechToTextService> init() async {
     try {
-      _hasSpeech = await _speech.initialize(
+      _hasSpeech.value = await _speech.initialize(
         onError: errorListener,
         onStatus: statusListener,
         debugLogging: true,
       );
 
-      if (_hasSpeech) {
-        _localeNames = await _speech.locales();
+      if (_hasSpeech.value) {
+        _localeNames.value = await _speech.locales();
 
         var systemLocale = await _speech.systemLocale();
-        _currentLocaleId = systemLocale?.localeId ?? '';
+        _currentLocaleId.value = systemLocale?.localeId ?? '';
       }
     } on PlatformException catch (e) {
       developer.log('Failed to initialize speech recognition', error: e);
-      _lastError = 'Speech recognition failed: ${e.message}';
+      _lastError.value = 'Speech recognition failed: ${e.message}';
     }
 
     return this;
   }
 
   Future<void> startListening() async {
-    _lastWords = '';
-    _lastError = '';
+    _lastWords.value = '';
+    _lastError.value = '';
 
     try {
       await _speech.listen(
@@ -56,51 +56,46 @@ class SpeechToTextService extends GetxService {
         listenFor: const Duration(seconds: 30),
         pauseFor: const Duration(seconds: 5),
         partialResults: true,
-        localeId: _currentLocaleId,
+        localeId: _currentLocaleId.value,
         onSoundLevelChange: soundLevelListener,
         cancelOnError: true,
         listenMode: ListenMode.confirmation,
       );
     } on PlatformException catch (e) {
       developer.log('Failed to start listening', error: e);
-      _lastError = 'Failed to start listening: ${e.message}';
+      _lastError.value = 'Failed to start listening: ${e.message}';
     }
   }
 
   Future<void> stopListening() async {
     await _speech.stop();
-    _level = 0.0;
+    _level.value = 0.0;
   }
 
   Future<void> cancelListening() async {
     await _speech.cancel();
-    _level = 0.0;
+    _level.value = 0.0;
   }
 
   void resultListener(SpeechRecognitionResult result) {
-    _lastWords = '${result.recognizedWords} - ${result.finalResult}';
-    update();
+    _lastWords.value = '${result.recognizedWords} - ${result.finalResult}';
   }
 
   void soundLevelListener(double level) {
-    _level = level;
-    update();
+    _level.value = level;
   }
 
   void errorListener(SpeechRecognitionError error) {
-    _lastError = '${error.errorMsg} - ${error.permanent}';
-    update();
+    _lastError.value = '${error.errorMsg} - ${error.permanent}';
   }
 
   void statusListener(String status) {
-    _lastStatus = status;
-    update();
+    _lastStatus.value = status;
   }
 
   void switchLang(String? selectedVal) {
     if (selectedVal != null) {
-      _currentLocaleId = selectedVal;
-      update();
+      _currentLocaleId.value = selectedVal;
     }
   }
 }
