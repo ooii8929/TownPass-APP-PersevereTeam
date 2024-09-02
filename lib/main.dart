@@ -6,12 +6,12 @@ import 'package:town_pass/service/package_service.dart';
 import 'package:town_pass/util/tp_colors.dart';
 import 'package:town_pass/util/tp_route.dart';
 import 'package:town_pass/service/shared_preferences_service.dart';
+import 'package:town_pass/service/speech_to_text_service.dart'; // 导入 WifiInfoService
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'dart:developer' as developer;
-import 'package:town_pass/service/speech_to_text.dart'; // 請確保導入路徑正確
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ void main() async {
   //   widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
   // );
 
-  developer.log('Application started');
+  developer.log('Application started'); // 添加日志记录
 
   await initServices();
 
@@ -29,35 +29,23 @@ void main() async {
     ),
   );
 
-  // 初始化 SpeechToTextService 並進行簡單測試
-  developer.log('Initializing SpeechToTextService');
-  final speechToTextService =
-      await Get.putAsync(() => SpeechToTextService().init());
-  developer.log('SpeechToTextService initialized');
-
-  // 測試 speech-to-text 功能
-  if (speechToTextService.hasSpeech) {
-    developer.log('Speech recognition is available');
-    developer.log('Current locale: ${speechToTextService.currentLocaleId}');
-    developer.log(
-        'Available locales: ${speechToTextService.localeNames.map((locale) => locale.localeId).join(", ")}');
-
-    // 嘗試開始監聽（注意：這只是一個示例，實際應用中應該在用戶界面中觸發）
-    await speechToTextService.startListening();
-    await Future.delayed(Duration(seconds: 5)); // 等待5秒
-    await speechToTextService.stopListening();
-
-    developer.log('Last recognized words: ${speechToTextService.lastWords}');
-    developer.log('Last error (if any): ${speechToTextService.lastError}');
-    developer.log('Last status: ${speechToTextService.lastStatus}');
-  } else {
-    developer.log('Speech recognition is not available on this device');
-  }
+  // 初始化 WifiInfoService 并打印 WiFi 信息
+  developer.log('Initializing WifiInfoService'); // 添加日志记录
+  final wifiInfoService = await Get.putAsync(() => WifiInfoService().init());
+  developer.log('WiFiInfoService initialized'); // 添加日志记录
+  developer.log('WiFi Name: ${wifiInfoService.wifiName}');
+  developer.log('WiFi BSSID: ${wifiInfoService.wifiBSSID}');
+  developer.log('WiFi IPv4: ${wifiInfoService.wifiIPv4}');
+  developer.log('WiFi IPv6: ${wifiInfoService.wifiIPv6}');
+  developer.log('WiFi Gateway IP: ${wifiInfoService.wifiGatewayIP}');
+  developer.log('WiFi Broadcast: ${wifiInfoService.wifiBroadcast}');
+  developer.log('WiFi Submask: ${wifiInfoService.wifiSubmask}');
 
   runApp(const MyApp());
 }
 
 Future<void> initServices() async {
+  developer.log('Initializing services'); // 添加日志记录
   await Get.putAsync<AccountService>(() async => await AccountService().init());
   await Get.putAsync<DeviceService>(() async => await DeviceService().init());
   await Get.putAsync<PackageService>(() async => await PackageService().init());
@@ -65,6 +53,7 @@ Future<void> initServices() async {
       () async => await SharedPreferencesService().init());
   await Get.putAsync<GeoLocatorService>(
       () async => await GeoLocatorService().init());
+  developer.log('Services initialized'); // 添加日志记录
 }
 
 class MyApp extends StatelessWidget {
@@ -72,6 +61,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    developer.log('Building MyApp widget'); // 添加日志记录
     return GetMaterialApp(
       title: 'City Pass',
       theme: ThemeData(
