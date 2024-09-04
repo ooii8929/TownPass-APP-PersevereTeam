@@ -3,12 +3,14 @@ import 'package:town_pass/page/city_service/city_service_view.dart';
 import 'package:town_pass/page/home/home_view.dart';
 import 'package:town_pass/page/perk/perk_view.dart';
 import 'package:flutter/material.dart';
+import 'package:town_pass/page/speech_to_text/speech_to_text_view.dart'; // 新增這一行
 
 class TPBottomNavigationBarItemFactory {
   static List<TPBottomNavigationBarItem> get barItems => const [
         ServiceBottomNavigationBarItem(),
         HomeBottomNavigationBarItem(),
         PerkBottomNavigationBarItem(),
+        SpeechToTextBottomNavigationBarItem() // 新增這一行
         // BillBottomNavigationBarItem(),
       ];
 }
@@ -92,3 +94,21 @@ class PerkBottomNavigationBarItem extends TPBottomNavigationBarItem {
 //   @override
 //   String label() => '帳務';
 // }
+
+class SpeechToTextBottomNavigationBarItem extends TPBottomNavigationBarItem {
+  const SpeechToTextBottomNavigationBarItem();
+
+  @override
+  Widget icon() =>
+      Assets.svg.iconTabbarCouponDefault.svg(height: 24, width: 24);
+
+  @override
+  Widget activeIcon() =>
+      Assets.svg.iconTabbarCouponDefault.svg(height: 24, width: 24);
+
+  @override
+  String label() => '語音';
+
+  @override
+  StatelessWidget view() => const SpeechToTextView();
+}
