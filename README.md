@@ -57,10 +57,10 @@ gitGraph
 
       == Devices ==
       -- iOS 17.5 --
-         iPhone 15 Pro Max (53CEAA9A-8CB3-46CB-BD6D-06024B76A9DC) (Shutdown) 
+         iPhone 15 Pro Max (9D9E9331-ECBF-4DA1-B830-61AE243439CF) (Shutdown) 
       ```
       ```
-      open -a Simulator --args -CurrentDeviceUDID 53CEAA9A-8CB3-46CB-BD6D-06024B76A9DC
+      open -a Simulator --args -CurrentDeviceUDID 9D9E9331-ECBF-4DA1-B830-61AE243439CF
       ```
       
    * 用 flutter devices 列出你可能有的 Devices，並且使用 flutter run -d <device id> 來選擇 Device。以下舉例：
@@ -68,7 +68,7 @@ gitGraph
       flutter devices
 
       Found 4 connected devices:
-         iPhone 15 Pro Max (mobile)      • 53CEAA9A-8CB3-46CB-BD6D-06024B76A9DC • ios
+         iPhone 15 Pro Max (mobile)      • 9D9E9331-ECBF-4DA1-B830-61AE243439CF • ios
          • com.apple.CoreSimulator.SimRuntime.iOS-17-5 (simulator)
          macOS (desktop)                 • macos                                •
          darwin-arm64   • macOS 14.1.1 23B81 darwin-arm64
@@ -78,7 +78,7 @@ gitGraph
          web-javascript • Google Chrome 128.0.6613.86
       ```
       ```
-      flutter run -d 53CEAA9A-8CB3-46CB-BD6D-06024B76A9DC
+      flutter run -d 9D9E9331-ECBF-4DA1-B830-61AE243439CF
       ```
 
    * 團隊統一使用 iPhone 15 Pro Max 裝置開發

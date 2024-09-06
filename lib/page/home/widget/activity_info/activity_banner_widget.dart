@@ -12,7 +12,8 @@ class ActivityBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-      init: Get.put<ActivityBannerWidgetController>(ActivityBannerWidgetController()),
+      init: Get.put<ActivityBannerWidgetController>(
+          ActivityBannerWidgetController()),
       builder: (controller) {
         return SizedBox(
           height: 180, //
@@ -34,7 +35,8 @@ class ActivityBannerWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: controller.list!.data.length,
                 separatorBuilder: (_, __) => const SizedBox(width: 16),
-                itemBuilder: (_, index) => _Banner(activity: controller.list!.data[index]),
+                itemBuilder: (_, index) =>
+                    _Banner(activity: controller.list!.data[index]),
               ),
           },
         );

@@ -1,21 +1,13 @@
-import 'dart:io';
-
 import 'package:town_pass/gen/assets.gen.dart';
 import 'package:town_pass/page/account/account_view_controller.dart';
 import 'package:town_pass/page/account/widget/account_app_bar.dart';
 import 'package:town_pass/page/account/widget/account_view_footer.dart';
-import 'package:town_pass/util/extension/map.dart';
 import 'package:town_pass/util/tp_setting_list.dart';
-import 'package:town_pass/service/geo_locator_service.dart';
 import 'package:town_pass/util/tp_colors.dart';
-import 'package:town_pass/util/tp_constant.dart';
-import 'package:town_pass/util/tp_line.dart';
 import 'package:town_pass/util/tp_route.dart';
 import 'package:town_pass/util/tp_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AccountView extends GetView<AccountViewController> {
   const AccountView({super.key});
@@ -43,7 +35,8 @@ class AccountView extends GetView<AccountViewController> {
                         color: TPColors.grayscale800,
                       ),
                       trailing: GestureDetector(
-                        onTap: () async => await Get.toNamed(TPRoute.setting)?.then((value) => controller.syncAccount()),
+                        onTap: () async => await Get.toNamed(TPRoute.setting)
+                            ?.then((value) => controller.syncAccount()),
                         child: Assets.svg.iconSettings.svg(),
                       ),
                     ),
@@ -56,7 +49,8 @@ class AccountView extends GetView<AccountViewController> {
                         color: TPColors.grayscale800,
                       ),
                       trailing: GestureDetector(
-                        onTap: () async => await Get.toNamed(TPRoute.setting)?.then((value) => controller.syncAccount()),
+                        onTap: () async => await Get.toNamed(TPRoute.setting)
+                            ?.then((value) => controller.syncAccount()),
                         child: Assets.svg.iconSettings.svg(),
                       ),
                     ),

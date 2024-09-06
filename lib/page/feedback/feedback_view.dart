@@ -15,7 +15,7 @@ class FeedbackView extends GetView<FeedbackViewController> {
 
   @override
   Widget build(BuildContext context) {
-    DropdownMenu(
+    const DropdownMenu(
       dropdownMenuEntries: [],
     );
     return Scaffold(
@@ -44,7 +44,8 @@ class FeedbackView extends GetView<FeedbackViewController> {
                   .toList(),
               hintText: '請選擇建議類型',
               textStyle: TPTextStyles.h3SemiBold,
-              inputDecorationTheme: InputDecorationTheme(border: InputBorder.none),
+              inputDecorationTheme:
+                  const InputDecorationTheme(border: InputBorder.none),
               menuStyle: MenuStyle(
                 backgroundColor: WidgetStateProperty.all(TPColors.grayscale50),
               ),
@@ -72,13 +73,20 @@ class FeedbackView extends GetView<FeedbackViewController> {
                       child: TextField(
                         controller: controller.controller,
                         decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: TPColors.grayscale500)),
-                          focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: TPColors.grayscale500)),
-                          hintStyle: TPTextStyles.bodyRegular.copyWith(color: TPColors.grayscale400),
+                          enabledBorder: const OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: TPColors.grayscale500)),
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: TPColors.grayscale500)),
+                          hintStyle: TPTextStyles.bodyRegular
+                              .copyWith(color: TPColors.grayscale400),
                           hintText: '請描述建議與問題',
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                          contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 16),
                         ),
-                        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+                        onTapOutside: (_) =>
+                            FocusManager.instance.primaryFocus?.unfocus(),
                         textAlignVertical: TextAlignVertical.top,
                         expands: true,
                         keyboardType: TextInputType.multiline,
@@ -95,7 +103,8 @@ class FeedbackView extends GetView<FeedbackViewController> {
                           child: RichText(
                             text: TextSpan(
                               text: '若您對市政府有任何建議或問題請至',
-                              style: const TextStyle(color: TPColors.grayscale700),
+                              style:
+                                  const TextStyle(color: TPColors.grayscale700),
                               children: [
                                 TextSpan(
                                   text: '有話要說',
@@ -103,18 +112,21 @@ class FeedbackView extends GetView<FeedbackViewController> {
                                     decoration: TextDecoration.underline,
                                     color: TPColors.primary500,
                                   ),
-                                  recognizer: TapGestureRecognizer()..onTap = () {},
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {},
                                 ),
                                 const TextSpan(text: '，若系統操作上有任何問題請'),
                                 TextSpan(
-                                  text: '打客服電話 ${controller.contactPhoneNumber}',
+                                  text:
+                                      '打客服電話 ${controller.contactPhoneNumber}',
                                   style: const TextStyle(
                                     decoration: TextDecoration.underline,
                                     color: TPColors.primary500,
                                   ),
                                   recognizer: TapGestureRecognizer()
                                     ..onTap = () {
-                                      launchUrlString('tel://${controller.contactPhoneNumber}');
+                                      launchUrlString(
+                                          'tel://${controller.contactPhoneNumber}');
                                     },
                                 ),
                               ],
