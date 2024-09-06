@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:town_pass/gen/assets.gen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TPCachedNetworkImage extends StatelessWidget {
@@ -30,7 +29,8 @@ class TPCachedNetworkImage extends StatelessWidget {
       height: height,
       decoration: ShapeDecoration(
         color: color,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius)),
       ),
       child: CachedNetworkImage(
         imageUrl: imageUrl,
@@ -38,7 +38,8 @@ class TPCachedNetworkImage extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         fit: fit,
-        placeholder: (context, string) => const Center(child: CircularProgressIndicator()),
+        placeholder: (context, string) =>
+            const Center(child: CircularProgressIndicator()),
         errorWidget: (context, string, object) => ColoredBox(
           color: const Color(0xFFE3E7E9),
           child: Center(

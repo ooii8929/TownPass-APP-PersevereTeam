@@ -3,23 +3,18 @@ import 'package:get/get.dart';
 
 sealed class FetchStatus {}
 
-class DoneFetchStatus extends FetchStatus {
+class DoneFetchStatus extends FetchStatus {}
 
-}
+class ErrorFetchStatus extends FetchStatus {}
 
-class ErrorFetchStatus extends FetchStatus {
-
-}
-
-class FetchingFetchStatus extends FetchStatus {
-
-}
-
+class FetchingFetchStatus extends FetchStatus {}
 
 class TPFetchWidgetController extends GetxController {
   final Function? onFetch;
 
-  TPFetchWidgetController({this.onFetch,});
+  TPFetchWidgetController({
+    this.onFetch,
+  });
 }
 
 class TPFetchWidget extends StatelessWidget {
@@ -32,6 +27,6 @@ class TPFetchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 }
